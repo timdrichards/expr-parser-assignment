@@ -13,5 +13,5 @@ expr-parser: $(OBJS)
 clean:
 	rm -f $(ASMS)
 	rm -f $(OBJS)
-	rm -f $(BINS)
+	rm -f expr-parser
 	rm -f *~
