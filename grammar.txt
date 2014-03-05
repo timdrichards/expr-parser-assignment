@@ -1,0 +1,12 @@
+
+line => expr SEMI
+expr => term expr_prime
+expr_prime => PLUS expr
+	   |  MINUS expr
+	   |
+term => factor term_prime
+term_prime => TIMES term
+           |  DIVIDE term
+           |
+factor => int
+        | LP expr RP

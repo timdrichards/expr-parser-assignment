@@ -55,13 +55,8 @@ Expr* make_add(Expr* left, Expr* right);
 Expr* make_sub(Expr* left, Expr* right);
 Expr* make_mul(Expr* left, Expr* right);
 Expr* make_div(Expr* left, Expr* right);
-Expr* expr_parse(char* filename);
 
-Expr* parse_term();
-Expr* parse_factor();
-Expr* parse_int();
-
-void expr_print(Expr* expr);
+int expr_print(Expr* expr);
 int expr_interpret(Expr* expr);
 
 #endif

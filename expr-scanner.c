@@ -1,5 +1,5 @@
 #include <string.h>
-#include "exp-scanner.h"
+#include "expr-scanner.h"
 #include "ctype.h"
 
 #define NL    '\n'

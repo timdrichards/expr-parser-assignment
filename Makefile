@@ -1,16 +1,17 @@
+CC = gcc
+SRCS = $(wildcard *.c)
+OBJS = $(patsubst %.c,%.o,$(SRCS))
 
-all: expr-ast
+all: expr-parser
 
-expr-ast: expr-ast.o exp-scanner.o
-	gcc expr-ast.o exp-scanner.o -o expr-ast
+expr-parser: $(OBJS)
+	$(CC) $(FLAGS) -o $@ $^
 
-expr-ast.o: expr-ast.c expr-ast.h
-	gcc -c expr-ast.c
-
-exp-scanner.o: exp-scanner.c exp-scanner.h
-	$(CC) $(FLAGS) -c exp-scanner.c
-
+%.o: %.c
+	$(CC) $(FLAGS) -c $<
 
 clean:
-	rm -f *.o *~
-	rm -f expr-ast
+	rm -f $(ASMS)
+	rm -f $(OBJS)
+	rm -f $(BINS)
+	rm -f *~
