@@ -1,5 +1,5 @@
 CC = gcc
-SRCS = $(wildcard *.c)
+SRCS = $(wildcard soln-src/*.c)
 OBJS = $(patsubst %.c,%.o,$(SRCS))
 
 all: expr-parser
@@ -8,7 +8,7 @@ expr-parser: $(OBJS)
 	$(CC) $(FLAGS) -o $@ $^
 
 %.o: %.c
-	$(CC) $(FLAGS) -c $<
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(ASMS)

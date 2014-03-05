@@ -73,7 +73,7 @@ Expr* expr_parse(char* filename) {
   Expr* e = parse_expr();
 
   // The very last token must be a ';'. If it is not, it is an error:
-  if (token.t != TOK_SEMI) {
+  if (!match(TOK_SEMI)) {
     printf("ERROR: expected ;, found %s\n", token.value);
     exit(1);    
   }
@@ -117,13 +117,11 @@ Expr* parse_expr() {
  */
 Expr* parse_expr_prime(Expr* left) {
   Expr* e = left;
-  if (token.t == TOK_PLUS) {
-    token = scan(fp);
+  if (consume(TOK_PLUS)) {
     Expr* right = parse_expr();
     e = make_add(left, right);
   }
-  else if (token.t == TOK_MINUS) {
-    token = scan(fp);
+  else if (consume(TOK_MINUS)) {
     Expr* right = parse_expr();
     e = make_sub(left, right);
   }
@@ -168,13 +166,11 @@ Expr* parse_term() {
  */
 Expr* parse_term_prime(Expr* left) {
   Expr* e = left;
-  if (token.t == TOK_TIMES) {
-    token = scan(fp);
+  if (consume(TOK_TIMES)) {
     Expr* right = parse_term();
     e = make_mul(left, right);
   }
-  else if (token.t == TOK_DIVIDE) {
-    token = scan(fp);
+  else if (consume(TOK_DIVIDE)) {
     Expr* right = parse_term();
     e = make_div(left, right);
   }
@@ -194,30 +190,6 @@ Expr* parse_term_prime(Expr* left) {
  * It returns an expression.
  *
  */
-// Expr* parse_factor() {
-//   Expr* e = NULL;
-//   if (token.t == TOK_INT) {
-//     e = make_int(atoi(token.value));    
-//     token = scan(fp);
-//   }
-//   else if (token.t == TOK_LP) {
-//     token = scan(fp);
-//     e = parse_expr();
-//     if (token.t == TOK_RP) {
-//       token = scan(fp);
-//     }
-//     else {
-//       printf("ERROR: expected ), found %s\n", token.value);
-//       exit(1);
-//     }
-//   }
-//   else {
-//     printf("ERROR: expected int or (, found %s\n", token.value);
-//     exit(1);    
-//   }
-//   return e;
-// }
-
 Expr* parse_factor() {
   Expr* e = NULL;
   if (match(TOK_INT)) {
