@@ -14,9 +14,9 @@ FILE* fp = NULL;
 
 // Function prototypes:
 Expr* parse_expr();
-Expr* parse_expr_prime();
+Expr* parse_expr_prime(Expr* right);
 Expr* parse_term();
-Expr* parse_term_prime();
+Expr* parse_term_prime(Expr* right);
 Expr* parse_factor();
 Expr* parse_prim();
 Expr* parse_int();
@@ -115,14 +115,14 @@ Expr* parse_expr() {
  * rule).
  *
  */
-Expr* parse_expr_prime(Expr* left) {
-  Expr* e = left;
+Expr* parse_expr_prime(Expr* right) {
+  Expr* e = right;
   if (consume(TOK_PLUS)) {
-    Expr* right = parse_expr();
+    Expr* left = parse_expr();
     e = make_add(left, right);
   }
   else if (consume(TOK_MINUS)) {
-    Expr* right = parse_expr();
+    Expr* left = parse_expr();
     e = make_sub(left, right);
   }
   return e;
@@ -164,14 +164,14 @@ Expr* parse_term() {
  * rule).
  *
  */
-Expr* parse_term_prime(Expr* left) {
-  Expr* e = left;
+Expr* parse_term_prime(Expr* right) {
+  Expr* e = right;
   if (consume(TOK_TIMES)) {
-    Expr* right = parse_term();
+    Expr* left = parse_term();
     e = make_mul(left, right);
   }
   else if (consume(TOK_DIVIDE)) {
-    Expr* right = parse_term();
+    Expr* left = parse_term();
     e = make_div(left, right);
   }
   return e;
