@@ -92,9 +92,8 @@ Expr* expr_parse(char* filename) {
  *
  */
 Expr* parse_expr() {
-  Expr* left = parse_term();
-  Expr* expr = parse_expr_prime(left);
-  return expr;
+  // TODO
+  return NULL;
 }
 
 /**
@@ -116,15 +115,8 @@ Expr* parse_expr() {
  *
  */
 Expr* parse_expr_prime(Expr* left) {
-  Expr* e = left;
-  if (consume(TOK_PLUS)) {
-    Expr* right = parse_expr();
-    e = make_add(left, right);
-  }
-  else if (consume(TOK_MINUS)) {
-    Expr* right = parse_expr();
-    e = make_sub(left, right);
-  }
+  Expr* e = NULL;
+  // TODO
   return e;
 }
 
@@ -141,9 +133,8 @@ Expr* parse_expr_prime(Expr* left) {
  *
  */
 Expr* parse_term() {
-  Expr* left = parse_factor();
-  Expr* expr = parse_term_prime(left);
-  return expr;  
+  // TODO
+  return NULL;  
 }
 
 /**
@@ -166,14 +157,7 @@ Expr* parse_term() {
  */
 Expr* parse_term_prime(Expr* left) {
   Expr* e = left;
-  if (consume(TOK_TIMES)) {
-    Expr* right = parse_term();
-    e = make_mul(left, right);
-  }
-  else if (consume(TOK_DIVIDE)) {
-    Expr* right = parse_term();
-    e = make_div(left, right);
-  }
+  // TODO
   return e;
 }
 
