@@ -58,84 +58,11 @@ Expr* make_div(Expr* left, Expr* right) {
 }
 
 int expr_print(Expr* expr) {
-  if(expr == NULL) {
-    printf("Tree is empty");
-    return 0;
-  }
-
-  switch (expr->t) {
-    case INT:
-      printf("%d", expr->intValue->value);
-      break;
-    case TERM:
-      if (expr->term->op == PLUS) {
-        printf("(");
-        expr_print(expr->term->left);
-        printf("+");
-        expr_print(expr->term->right);
-        printf(")");
-        return 1;
-      }
-      else {
-        printf("(");
-        expr_print(expr->term->left);
-        printf("-");
-        expr_print(expr->term->right);
-        printf(")");
-        return 1;
-      }
-      break;
-    case FACTOR:
-      if (expr->term->op == TIMES) {
-        printf("(");
-        expr_print(expr->term->left);
-        printf("*");
-        expr_print(expr->term->right);
-        printf(")");
-        return 1;
-      }
-      else {
-        printf("(");
-        expr_print(expr->term->left);
-        printf("/");
-        expr_print(expr->term->right);
-        printf(")");
-        return 1;
-      }
-    break;
-    default:
-      printf("ERROR: AST is not properly formed\n");
-      return 0;
-  }
+  // TODO
+  return 0;
 }
 
 int expr_interpret(Expr* expr) {
-  if(expr == NULL) {
-    printf("Tree is empty");
-    return -1;
-  }
-
-  switch (expr->t) {
-    case INT:
-      return expr->intValue->value;
-      break;
-    case TERM:
-      if (expr->term->op == PLUS)
-        return expr_interpret(expr->term->left) +
-               expr_interpret(expr->term->right);
-      else
-        return expr_interpret(expr->term->left) -
-               expr_interpret(expr->term->right);
-      break;
-    case FACTOR:
-      if (expr->term->op == TIMES)
-        return expr_interpret(expr->term->left) *
-               expr_interpret(expr->term->right);
-      else
-        return expr_interpret(expr->term->left) /
-               expr_interpret(expr->term->right);        
-    break;
-    default:
-      printf("ERROR: AST is not properly formed\n");
-  }
+  // TODO
+  return -1;
 }
